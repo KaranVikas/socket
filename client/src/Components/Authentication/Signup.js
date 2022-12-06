@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios';
+import { useHistory } from "react-router-dom"
 
 const Signup = () => {
     const [name, setName] = useState("dd");
@@ -9,6 +10,8 @@ const Signup = () => {
     const [confirmpassword, setConfirmpassword] = useState();
     const [pic, setPic] = useState();
     const [loading, setLoading] = useState(false)
+    const history = useHistory();
+    
 
     const handleShow = () => setShow(!show);
 
@@ -60,6 +63,8 @@ const Signup = () => {
            // toast function -> registration successful
 
            localStorage.setItem('userInfo',JSON.stringify(data));
+           // setload
+           history.push('/chats')
         } catch (error) {
             // toast function -> error occured
         }
@@ -85,7 +90,7 @@ const Signup = () => {
           class="form-control"
           id="floatingInput"
           placeholder="name@example.com"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <label for="floatingInput">Email address</label>
