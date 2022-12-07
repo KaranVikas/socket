@@ -4,6 +4,8 @@ const {chats} = require('./data/data');
 const connectDB = require('./config/db');
 const colors = require("colors")
 const userRoutes = require("./routes/userRoutes");
+const router = require('./routes/chatRoutes')
+
 const { notFound, errorHandler } = require('./middlewares/errorMiddleware')
 
 dotenv.config();
@@ -32,6 +34,7 @@ app.get("/api/chat/:id", (req, res) => {
 });
 
 app.use("/api/user", userRoutes);
+app.use("/api/chat", chatRoutes)
 
 // adding errorhandling api if we go route that doesn't exist 
 app.use(notFound)
