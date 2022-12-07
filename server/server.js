@@ -20,21 +20,24 @@ app.get('/', (req,res) => {
 
 
 app.get('/api/chat', (req,res) => {
+    console.log("testing");
     res.send(chats);
 })
 
-  
+
+app.get("/api/chat/:id", (req, res) => {
+  console.log(req.params.id);
+  const singlechat = chats.find((c) => c._id === req.params.id)
+  res.send(singlechat);
+});
+
 app.use("/api/user", userRoutes);
 
 // adding errorhandling api if we go route that doesn't exist 
 app.use(notFound)
 app.use(errorHandler)
 
-app.get('/api/chat/:id', (req,res) => {
-    //console.log(req.params.id);
-    const singlechat = chats.find((c) => c._id === req.params.id)
-    res.send(singlechat)
-})
+
 
 const PORT = process.env.PORT || 5000;
 

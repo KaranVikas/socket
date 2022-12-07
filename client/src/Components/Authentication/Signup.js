@@ -9,16 +9,17 @@ const Signup = () => {
     const [password, setPassword] = useState();
     const [confirmpassword, setConfirmpassword] = useState();
     const [pic, setPic] = useState();
-    const [loading, setLoading] = useState(false)
+    //const [loading, setLoading] = useState(false)
     const history = useHistory();
     
 
     const handleShow = () => setShow(!show);
 
     const postDetails = (pics) => { 
-        setLoading(true)
+        //setLoading(true)
         if(pics === undefined){
             // run toast please add image
+            console.log("please add image")
         }
         if(pics.type === "image/jpeg" || pics.type === "image/png"){
           const data = new FormData();
@@ -32,7 +33,7 @@ const Signup = () => {
             .then(data => {
               setPic(data.url.toString());
               console.log(data.url.toString());
-              setLoading(false);
+              //setLoading(false);
             })
         } else {
           //toast function
@@ -42,11 +43,13 @@ const Signup = () => {
 
     const submitHandler = async() => {
         console.log("clicked on submit")
-        if(!name || !email || password || !confirmpassword){
+        if(!name || !email || !password || !confirmpassword){
           // toast  please fill all fields
+          console.log("please fill all fields")
         }
         if(password !== confirmpassword){
           // toast function
+          console.log("password and confirm does not match ")
         }
 
         try {
@@ -61,12 +64,14 @@ const Signup = () => {
           config
            );
            // toast function -> registration successful
+           console.log("registration successful")
 
            localStorage.setItem('userInfo',JSON.stringify(data));
            // setload
            history.push('/chats')
         } catch (error) {
             // toast function -> error occured
+            console.log("no registration error occured")
         }
           // setloading false
     }
